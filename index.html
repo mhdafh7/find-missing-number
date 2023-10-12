@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vite App</title>
+  </head>
+  <body>
+    <!-- <div id="app"></div> -->
+    <div>
+      <h1>Find missing number</h1>
+      <form>
+        <label for="text-input"
+          >Enter 9 numbers 1-10, separated by commas(','):</label
+        >
+        <input type="text" id="text-input" required />
+        <button type="button" id="submit" onclick="onClickFunction()">
+          Submit
+        </button>
+      </form>
+      <p>Result: <span id="result"></span></p>
+    </div>
+    <script>
+      function onClickFunction() {
+        const inputValue = document.getElementById("text-input").value;
+        const inputArray = inputValue.split(",").map(Number);
+
+        // const findMissing = (array) => {
+        //   const arraySet = new Set(array);
+
+        //   for (let i = 1; i <= 10; i++) {
+        //     if (!arraySet.has(i)) {
+        //       console.log(i);
+        //       return i;
+        //     }
+        //   }
+        // };
+
+        const findMissing = (array) => {
+          const expectedSum = 55; //sum of 10 elements
+          let actualSum = 0;
+          for (let i = 0; i < array.length; i++) {
+            actualSum += array[i];
+          }
+
+          return expectedSum - actualSum;
+        };
+
+        const result = findMissing(inputArray);
+        document.getElementById("result").innerHTML = result;
+      }
+    </script>
+  </body>
+</html>
